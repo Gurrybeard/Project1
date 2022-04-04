@@ -11,6 +11,7 @@ const temp = document.getElementById('temp');
 const condition = document.getElementById('condition');
 const locationQuery = document.getElementById('locationQuery');
 const locationSubmit = document.getElementById('locationSubmit');
+let cftog = true;
 //fetch params
 const options = {
     method: 'GET',
@@ -19,20 +20,49 @@ const options = {
         'X-RapidAPI-Key': '5e519ad7camsh9d194aefdd5d6e5p1bd575jsncd523e2ed36e'
     }
 };
+//repeatable fetch function with query param
+function fetchq(q){
+    fetch(`https://weatherapi-com.p.rapidapi.com/current.json?q=${q}`, options)
+    .then(response => response.json())
+    .then((data)=> {
+        console.log(data)
+        //update the dom content
+        location.innerHTML=data.location.name;
+        conditionImg.src='https:'+data.current.condition.icon;
+        if(cftog){
+        temp.innerHTML=data.current.temp_f + "F°"
+        }
+        else if(!cftog){
+            temp.innerHTML=data.current.temp_C + "C°"
+        }
+        
+        condition.innerHTML=data.current.condition.text
+        // f/c tog event
+        //(event 3/3)
+        //used .onclick instead of addeventlistner(click) because it only needs one event
+        cf.onclick= function(){
+            if(cftog){
+                cftog =false;
+                cf.innerHTML="C°"
+                temp.innerHTML=data.current.temp_c + "C°"
+            }
+            else if(!cftog){
+                cftog=true;
+                cf.innerHTML="F°"
+                temp.innerHTML=data.current.temp_f + "F°"
+            }
+        }
+    })
+    .catch(err => console.error(err));
+}
+//load new york as default location
+fetchq('new york')
 //input listeners
 //(event 2/3)
 locationSubmit.addEventListener('click',()=>{
-   //api get request 
-    fetch(`https://weatherapi-com.p.rapidapi.com/current.json?q=${locationQuery.value}`, options)
-        .then(response => response.json())
-        .then((data)=> {
-            console.log(data)
-            //update the dom content
-            location.innerHTML=data.location.name;
-            conditionImg.src='https:'+data.current.condition.icon;
-            temp.innerHTML=data.current.temp_f; // may need to ${cf value} !cf
-            condition.innerHTML=data.current.condition.text
-        })
-        .catch(err => console.error(err));
+   //api get request on a click
+    fetchq(locationQuery.value)
 })
+
 })
+//when i switch location and tog is c it shows undefined until i click the togle
