@@ -22,11 +22,17 @@ const options = {
 //input listeners
 //(event 2/3)
 locationSubmit.addEventListener('click',()=>{
-   
-    
+   //api get request 
     fetch(`https://weatherapi-com.p.rapidapi.com/current.json?q=${locationQuery.value}`, options)
         .then(response => response.json())
-        .then(response => console.log(response))
+        .then((data)=> {
+            console.log(data)
+            //update the dom content
+            location.innerHTML=data.location.name;
+            conditionImg.src='https:'+data.current.condition.icon;
+            temp.innerHTML=data.current.temp_f; // may need to ${cf value} !cf
+            condition.innerHTML=data.current.condition.text
+        })
         .catch(err => console.error(err));
 })
 })
