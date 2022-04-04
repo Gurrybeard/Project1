@@ -8,4 +8,8 @@ const cf = document.getElementById('cf');
 const conditionImg = document.getElementById('conditionImg');
 const temp = document.getElementById('temp');
 const condition = document.getElementById('condition');
+const locationQuery = document.getElementById('locationQuery');
+const locationSubmit = document.getElementById('locationSubmit');
+//input listeners
+
 })
