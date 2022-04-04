@@ -4,3 +4,4 @@ enter location
 forecast box
 fav location button
 pick out of fav menu will switch to that location
+maybe f to c switch
