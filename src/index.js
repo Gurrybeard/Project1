@@ -20,7 +20,7 @@ const options = {
         'X-RapidAPI-Key': '5e519ad7camsh9d194aefdd5d6e5p1bd575jsncd523e2ed36e'
     }
 };
-//repeatable fetch function with query param
+//repeatable fetch +dom update function with query param
 function fetchq(q){
     fetch(`https://weatherapi-com.p.rapidapi.com/current.json?q=${q}`, options)
     .then(response => response.json())
@@ -65,4 +65,4 @@ locationSubmit.addEventListener('click',()=>{
 })
 
 })
-//when i switch location and tog is c it shows undefined until i click the togle
+//todo: When I switch location and tog is c it shows undefined until I click the toggle
