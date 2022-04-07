@@ -71,6 +71,3 @@ locationSubmit.addEventListener('click',()=>{
 })
 
 })
-//todo: When I switch location and tog is c it shows undefined until I click the toggle
-//maybe seperate fetch function and the dom update so you can use fetch on its own  
-// 1 more listener 
