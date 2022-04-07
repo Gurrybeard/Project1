@@ -29,13 +29,16 @@ function fetchq(q){
         //update the dom content
         location.innerHTML=data.location.name;
         conditionImg.src='https:'+data.current.condition.icon;
-        if(cftog){
+        temp.innerHTML=data.current.temp_f + "F°"
+        cf.innerHTML="F°"
+        cftog = true;
+        /*if(cftog){
         temp.innerHTML=data.current.temp_f + "F°"
         }
         else if(!cftog){
             temp.innerHTML=data.current.temp_C + "C°"
         }
-        
+        */
         condition.innerHTML=data.current.condition.text
         // f/c tog event
         //(event 3/3)
