@@ -32,13 +32,6 @@ function fetchq(q){
         temp.innerHTML=data.current.temp_f + "F°"
         cf.innerHTML="F°"
         cftog = true;
-        /*if(cftog){
-        temp.innerHTML=data.current.temp_f + "F°"
-        }
-        else if(!cftog){
-            temp.innerHTML=data.current.temp_C + "C°"
-        }
-        */
         condition.innerHTML=data.current.condition.text
         // f/c tog event
         //(event 3/3)
@@ -55,6 +48,16 @@ function fetchq(q){
                 temp.innerHTML=data.current.temp_f + "F°"
             }
         }
+        //(event 4and5/3)
+        //changes the location to lat and lon values on hover and leave
+        location.addEventListener('mouseenter',()=>{
+            location.innerHTML = `lat:${data.location.lat} Lon:${data.location.lon}`
+        })
+        location.addEventListener('mouseleave',()=>{
+            location.innerHTML = location.innerHTML=data.location.name;
+            location.style
+        })
+
     })
     .catch(err => console.error(err));
 }
